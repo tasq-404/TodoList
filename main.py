@@ -22,6 +22,10 @@ while True:
                 print("Invalid number — no such task exists.")
             except ValueError:
                 print("Please enter a valid number.")
+            
+        case "complete":
+            number = int(input("Enter the number of the task to complete: "))
+            todos.pop(number - 1)
 
         case "exit":
             break
