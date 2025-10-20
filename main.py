@@ -1,7 +1,7 @@
 todos = []
 
 while True:
-    user_action = input("Type add, show, edit or exit: ")
+    user_action = input("Type add, show, edit, complete, delete or exit: ")
     user_action = user_action.strip().lower()
 
     match user_action:
@@ -25,6 +25,10 @@ while True:
             
         case "complete":
             number = int(input("Enter the number of the task to complete: "))
+            todos.pop(number - 1)
+
+        case "delete:":
+            number = int(input("Enter the number of the task to delete: "))
             todos.pop(number - 1)
 
         case "exit":
