@@ -23,6 +23,7 @@ A versatile Todo List application built in Python. This project evolves from a s
 **Currently working on:**  
 - Console version with basic functionality  
 - Adding GUI version (Tkinter/PyQt)  
+- Persistent storage using text file
 
 **Future plans:**  
 - Full web application using Flask/Django  
