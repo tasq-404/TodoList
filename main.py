@@ -21,7 +21,8 @@ while True:
             todos = file.readlines()
             file.close()
             for i, item in enumerate(todos): # enumerate function
-                    print(i + 1,". ",item,sep="", end="")
+                    item = item.strip("\n")
+                    print(i + 1,". ",item,sep="")
 
         case "edit":
             try:
