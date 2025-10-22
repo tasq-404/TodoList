@@ -6,20 +6,18 @@ while True:
         case "add":
             todo = input("Enter a task: ") + "\n"
             
-            file = open("todos.txt", "r")
-            todos = file.readlines()
-            file.close()
+            with open("todos.txt", "r") as file:
+                todos = file.readlines()
 
             todos.append(todo)
-            
-            file = open("todos.txt", "w")
-            file.writelines(todos)
-            file.close()
 
+            with open("todos.txt", "w") as file:
+                file.writelines(todos)
+            
         case "show":
-            file = open("todos.txt", "r")
-            todos = file.readlines()
-            file.close()
+            with open("todos.txt", "r") as file:
+                todos = file.readlines()
+            
             for i, item in enumerate(todos): # enumerate function
                     item = item.strip("\n")
                     print(i + 1,". ",item,sep="")
