@@ -26,8 +26,24 @@ while True:
             try:
                 number = int(input("Enter a number: "))
                 number -= 1
-                new_todo = input("Enter a new task: ")
-                todos[number] = new_todo
+                
+                with open("todos.txt", "r") as file:
+                    todos = file.readlines()
+
+                print("Current Tasks:")
+                for i, item in enumerate(todos):
+                    item = item.strip("\n")
+                    print(i + 1,". ",item,sep="")
+
+                new_todo = input("Enter the new task: ")
+                todos[number] = new_todo + "\n"
+
+                print("Task updated. New Tasks:")
+                for i, item in enumerate(todos):
+                    item = item.strip("\n")
+                    print(i + 1,". ",item,sep="")
+
+
             except IndexError:
                 print("Invalid number — no such task exists.")
             except ValueError:
@@ -35,11 +51,39 @@ while True:
             
         case "complete":
             number = int(input("Enter the number of the task to complete: "))
+            
+            with open("todos.txt", "r") as file:
+                todos = file.readlines()
+
+            todos.pop(number - 1)
+            print("Task completed. Updated Tasks:")
+            for i, item in enumerate(todos):
+                item = item.strip("\n")
+                print(i + 1,". ",item,sep="")
+
+            with open("todos.txt", "w") as file:
+                file.writelines(todos)
+
+        case "delete":
+            print("Current Tasks:")
+            with open("todos.txt", "r") as file:
+                todos = file.readlines()
+            
+            for i, item in enumerate(todos):
+                item = item.strip("\n")
+                print(i + 1,". ",item,sep="")
+
+            number = int(input("Enter the number of the task to delete: "))
+            
             todos.pop(number - 1)
 
-        case "delete:":
-            number = int(input("Enter the number of the task to delete: "))
-            todos.pop(number - 1)
+            print("Task deleted. Updated Tasks:")
+            for i, item in enumerate(todos):
+                item = item.strip("\n")
+                print(i + 1,". ",item,sep="")
+
+            with open("todos.txt", "w") as file:
+                file.writelines(todos)
 
         case "exit":
             break
